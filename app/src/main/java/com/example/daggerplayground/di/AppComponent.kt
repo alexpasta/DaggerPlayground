@@ -1,7 +1,6 @@
 package com.example.daggerplayground.di
 
-import android.app.Activity
-import com.example.daggerplayground.AppData
+import com.example.daggerplayground.Restaurant
 import com.example.daggerplayground.RestaurantApp
 import dagger.Component
 import javax.inject.Singleton
@@ -10,7 +9,5 @@ import javax.inject.Singleton
 @Component(modules = [AppModule::class])
 interface AppComponent {
     fun inject(app: RestaurantApp)
-    fun appData(): AppData
-
-//    fun appSubComponent(): AppSubComponent
+    fun appData(): Restaurant
 }

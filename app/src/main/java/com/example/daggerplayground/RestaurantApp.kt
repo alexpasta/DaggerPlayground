@@ -6,11 +6,10 @@ import com.example.daggerplayground.di.AppComponent
 import com.example.daggerplayground.di.DaggerAppComponent
 import javax.inject.Inject
 
-val TAG = "DaggerTest"
-
 class RestaurantApp : Application() {
+    private val TAG = javaClass.simpleName
     @Inject
-    lateinit var appData: AppData
+    lateinit var restaurant: Restaurant
 
     lateinit var appComponent: AppComponent
 
@@ -20,6 +19,6 @@ class RestaurantApp : Application() {
         appComponent = DaggerAppComponent.create()
         appComponent.inject(this)
 
-        Log.d(TAG, appData.toString())
+        Log.d(TAG, restaurant.toString())
     }
 }

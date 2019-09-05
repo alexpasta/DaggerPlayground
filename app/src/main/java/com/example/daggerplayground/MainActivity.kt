@@ -1,85 +1,40 @@
 package com.example.daggerplayground
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.example.daggerplayground.di.DaggerAppComponent
+import android.view.View
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import com.example.daggerplayground.di.DaggerMainComponent
 //import com.example.daggerplayground.di.DaggerMainComponent
 import javax.inject.Inject
 
 
 class MainActivity : AppCompatActivity() {
+    private val TAG = javaClass.simpleName
     @Inject lateinit var pasta: Pasta
     @Inject lateinit var pasta2: Pasta
+    @Inject lateinit var restaurant: Restaurant
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-//        DaggerMainComponent.create().inject(this)
-//
-//        Log.d(TAG, pasta.toString())
-//        Log.d(TAG, pasta2.toString())
+        val appComponent = (application as RestaurantApp).appComponent
 
-        val mainComponent = DaggerMainComponent.create()
+        DaggerMainComponent.builder()
+            .appComponent(appComponent)
+            .build()
+            .inject(this)
 
-        Log.d(TAG, mainComponent.pasta().toString())
-        Log.d(TAG, mainComponent.pasta().toString())
+        Log.d(TAG, pasta.toString())
+        Log.d(TAG, pasta2.toString())
+        Log.d(TAG, restaurant.toString())
+    }
+
+    fun openAnotherActivity(view: View) {
+        startActivity(Intent(this, AnotherActivity::class.java))
     }
 }
-
-
-
-//class MainActivity : AppCompatActivity() {
-//    @Inject lateinit var pasta: Pasta
-//    @Inject lateinit var pasta2: Pasta
-//
-//    @Inject lateinit var pizza: Pizza
-//    @Inject lateinit var pizza2: Pizza
-//
-//    lateinit var appData: AppData
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//
-//        DaggerMainComponent.create().inject(this)
-//        val appComponent = DaggerAppComponent.create()
-//
-//        Log.d(TAG, pasta.toString())
-//        Log.d(TAG, pasta2.toString())
-//
-//        Log.d(TAG, pizza.toString())
-//        Log.d(TAG, pizza2.toString())
-//
-//        Log.d(TAG, appComponent.appData().toString())
-//    }
-//}
-
-
-//class MenuActivity : AppCompatActivity() {
-//    //    @Inject
-////    lateinit var appData: AppData
-//    @Inject
-//    lateinit var pasta: Pasta
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//
-//        DaggerMenuComponent.create().inject(this)
-//        Log.d("TESTTT", pasta.toString())
-//    }
-//
-//    fun openAnotherActivity(view: View) {
-//        startActivity(Intent(this, AnotherActivity::class.java))
-//
-//        //        (application as MyApp).appComponent.appSubComponent().inject(this)
-//
-////        DaggerMenuComponent
-////            .builder()
-//////            .appComponent((application as MyApp).appComponent)
-////            .build()
-////            .inject(this)
-//
-////        Log.d("TESTTT", appData.toString())
-//    }
-//}
