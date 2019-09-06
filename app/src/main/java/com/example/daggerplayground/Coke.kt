@@ -1,5 +1,5 @@
 package com.example.daggerplayground
 
-class ActivityData2 {
+class Coke {
 
 }

@@ -7,11 +7,9 @@ import com.example.daggerplayground.di.DaggerMainComponent
 //import com.example.daggerplayground.di.DaggerMainComponent
 import javax.inject.Inject
 
-class AnotherActivity : AppCompatActivity() {
+class SecondActivity : AppCompatActivity() {
     private val TAG = javaClass.simpleName
-    @Inject lateinit var pasta: Pasta
-    @Inject lateinit var pasta2: Pasta
-
+    @Inject lateinit var coke: Coke
     @Inject lateinit var restaurant: Restaurant
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,16 +17,9 @@ class AnotherActivity : AppCompatActivity() {
 
         val appComponent = (application as RestaurantApp).appComponent
 
-        DaggerMainComponent.builder()
-            .appComponent(appComponent)
-            .build()
-            .inject(this)
+        appComponent.secondComponent().inject(this)
 
-        Log.d(TAG, pasta.toString())
-        Log.d(TAG, pasta2.toString())
+        Log.d(TAG, coke.toString())
         Log.d(TAG, restaurant.toString())
-
-        Log.d(TAG, pasta.toString())
-        Log.d(TAG, pasta2.toString())
     }
 }

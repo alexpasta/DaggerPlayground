@@ -8,15 +8,15 @@ import javax.inject.Singleton
 
 @ActivityScope
 class Pizza @Inject constructor() {
-    private val TAG = javaClass.simpleName
-
-    @Inject
-    fun testMethodInjection(pasta: Pasta) {
-        Log.d(TAG, "Member injection! pasta:" + pasta.toString())
-    }
-
-    @Inject
-    fun testMethodInjection2() {
-        Log.d(TAG, "Member injection!")
-    }
+//    private val TAG = javaClass.simpleName
+//
+//    @Inject
+//    fun testMethodInjection(pasta: Pasta) {
+//        Log.d(TAG, "Member injection! pasta:" + pasta.toString())
+//    }
+//
+//    @Inject
+//    fun testMethodInjection2() {
+//        Log.d(TAG, "Member injection!")
+//    }
 }

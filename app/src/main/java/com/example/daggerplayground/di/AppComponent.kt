@@ -9,5 +9,6 @@ import javax.inject.Singleton
 @Component(modules = [AppModule::class])
 interface AppComponent {
     fun inject(app: RestaurantApp)
-    fun appData(): Restaurant
+    fun restaurant(): Restaurant
+    fun secondComponent(): SecondComponent
 }

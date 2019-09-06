@@ -8,7 +8,7 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class PastaModule {
+class FoodModule {
     @Provides
     @ActivityScope
     fun provideShape() = Shape()
